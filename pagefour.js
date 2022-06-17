@@ -1,11 +1,10 @@
  let scores = [60, 50, 60, 58, 54, 54, 80, 50, 52, 57, 67, 69, 40, //pg 4
             50, 54, 56, 32, 23, 76, 43, 66, 45, 76, 4, 43, 65, 57, 80];
 
-
-
+function printAndHighScore(scores){
 let output;
 let highScore = 0;
-let bestSolutions = [];
+
 
 for(let x=0; x<scores.length; x++){
   output = "Bubble solution #" + x + " score: " + scores[x];
@@ -14,14 +13,28 @@ for(let x=0; x<scores.length; x++){
     highScore = scores[x];
   }
 }
-for (let x = 0; x<scores.length; x++){
-  if (scores[x] == highScore){
-    bestSolutions.push(x);
-  }
+return highScore;
 }
+
+function getBestResult(scores, highScore){
+  let bestSolutions = [];
+  for (let x = 0; x<scores.length; x++){
+    if (scores[x] == highScore){
+      bestSolutions.push(x);
+    }
+  }
+  return (bestSolutions);
+}
+let highScore = printAndHighScore(scores);
 console.log("Bubbles tests: " + scores.length);
 console.log("Highest bubble score: "+ highScore);
-console.log("Solution with the highest score: " + bestSolutions);
+
+let bestSolutions = getBestResult(scores, highScore);
+console.log("Solutions with the highest score: " + bestSolutions);
+
+
+
+
 
 
 //use for
