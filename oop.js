@@ -4,10 +4,32 @@ let fiat ={
   year:1960,
   color:"Medium Blue",
   passengers:3,
-  mileage:80000
+  mileage:80000,
+  started: false,
+
+  start:function(){
+    this.started = true;
+  },
+  stop:function(){
+    this.started = false;
+  },
+
+  drive: function(){
+    if (this.started){
+      alert("Zoom zoom!");
+    } else {
+      alert("You need to start the engine first.");
+    }
+  }
 };
 
 fiat.needsWashing = true;
+
+
+let cadi ={
+  make: "GM",
+  
+}
 
 
 /*let miles = fiat.mileage;
