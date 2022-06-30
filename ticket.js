@@ -1,10 +1,10 @@
 
 
 let passenger = [
-  {name:"Jane Dolool", paid:true},
-  {name:"Dr.Evel", paid:true},
-  {name:"Sue Property", paid:false},
-  {name:"John Funcall", paid:true},
+  {name:"Jane Dolool", paid:true, ticket:"coach"},
+  {name:"Dr.Evel", paid:true, ticket:"firstclass"},
+  {name:"Sue Property", paid:false, ticket:"firstclass"},
+  {name:"John Funcall", paid:true,ticket:"upEconom"},
 ];
 
 /*
@@ -59,3 +59,76 @@ if(!allPaid){
   console.log("The plane can't take off: not everyone has paid.");
 }
 
+
+function printPassenger(passenger){
+  let message = passenger.name;
+  if(passenger.paid===true){
+    message = message + " has paid.";
+  } else {
+    message = message + "has not paid."
+  }
+  console.log(message);
+  return false;
+}
+
+processPassengers(passenger, printPassenger);
+
+
+
+
+
+function createDrinkOrder(passenger){
+  let orderFunction;
+  if(passenger.ticket === "firstclass"){
+    orderFunction = function(){
+      alert("Would you like a cocktail or wine?");
+  }; 
+if(passenger.ticket === "upEconom"){
+  orderFunction = function(){
+    alert("Would you like wino or limonad?")
+  }
+}
+}else{
+  orderFunction = function(){ 
+    alert("Your choice is cola or water.");
+  };
+}
+return orderFunction;
+}
+
+function createDinnerOrder(passenger){
+  let dinnerFunction;
+  if(passenger.ticket === "firstclass"){
+    dinnerFunction = function(){
+      alert("Chicken or pasta?");
+    };
+  }
+   else if(passenger.ticket === "upEconom"){
+      dinnerFunction = function(){
+        alert("Cheese or snack box?");
+      };
+  }else{
+    dinnerFunction = function(){
+      alert("nut or pretzels?")
+    };
+  }
+  return dinnerFunction;
+}
+
+
+function serveCustomer(passenger){
+ let getDrinkOrderFunction = createDrinkOrder(passenger);
+ let getDinnerOrderFunction = createDinnerOrder(passenger);
+ getDrinkOrderFunction();
+ //lunch
+ getDinnerOrderFunction();
+ 
+ getDrinkOrderFunction();
+}
+
+function servePassenger(passenger){
+  for(let i=0; i<passenger.length;i++){
+    serveCustomer(passenger[i]);
+  }
+}
+servePassenger(passenger);
